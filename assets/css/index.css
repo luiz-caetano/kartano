@@ -17,6 +17,10 @@
   --text-secondary: #e0e0e0;
   --gradient-primary: linear-gradient(45deg, #8A2BE2, #9370DB);
   --gradient-bg: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  --shadow-primary: 0 4px 15px rgba(138, 43, 226, 0.2);
+  --shadow-hover: 0 6px 20px rgba(138, 43, 226, 0.3);
+  --border-color: rgba(147, 112, 219, 0.2);
+  --secondary-purple: #9370DB;
 }
 
 body {
@@ -25,6 +29,13 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+/* Base container for content alignment */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Scrollbar personalizada */
@@ -264,13 +275,13 @@ body {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 20px;
 }
 
 .section-header h2 {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: -1px;
-  width: 800px;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -299,23 +310,11 @@ body {
   padding: 0 20px;
 }
 
-.projetos .section-header h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 20px;
-}
-
 .projetos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  max-width: 1400px;
+  max-width: 1200px; /* Use the same max-width as the container */
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -326,6 +325,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .projeto-image {
@@ -375,7 +375,7 @@ body {
 
 /* Seção Depoimentos */
 .depoimentos {
-  padding: 120px 30px;
+  padding: 120px 0; /* Changed padding to match other sections */
   background: var(--dark-bg);
   position: relative;
   z-index: 1;
@@ -390,8 +390,9 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1200px; /* Use the same max-width as the container */
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .depoimento-card {
@@ -477,7 +478,7 @@ body {
 /* Update contact section styling */
 .contato {
   position: relative;
-  padding: 120px 30px;
+  padding: 120px 0; /* Changed padding to match other sections */
   background: linear-gradient(
     to bottom,
     var(--dark-bg) 0%,
@@ -486,14 +487,14 @@ body {
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .contato-container {
   text-align: center;
-  max-width: 1200px;
+  max-width: 1200px; /* Use the same max-width as the container */
   margin: 0 auto;
-  width: 100%;
+  padding: 0 20px;
 }
 
 .contato h2 {
@@ -631,26 +632,6 @@ footer::after {
     padding: 0 20px;
   }
 
-
-
-  .projeto-info {
-    transform: translateY(0);
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
-    padding: 20px;
-  }
-
-  .projeto-info p {
-    display: none; /* Remove o texto descritivo no mobile */
-  }
-
-  .projeto-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px; /* Reduz o espaço já que não tem mais texto */
-  }
-
-  .projeto-tags {
-    margin-top: 0; /* Ajusta o espaçamento das tags */
-  }
 
   .depoimentos {
     padding: 80px 20px;
