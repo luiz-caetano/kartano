@@ -10,7 +10,7 @@
 </head>
 <body>
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
+    <div class="nav-container container">
       <a href="#inicio" class="logo">
         <div class="logo-img">
              <img src="assets/img/teste.png" alt="Kartano Logo" style="width: 100%; height: 100%;"> 
@@ -41,26 +41,27 @@
   </nav>
 
   <section id="inicio" class="hero">
-    <div class="hero-content">
+    <div class="hero-content container">
       <h1>Seu site, sua vitrine, seu sucesso</h1>
       <p>
         Na Kartano, criamos websites que transmitem <strong>status</strong>, 
         <strong>exclusividade</strong> e <strong>sofisticação</strong>. 
         Sua presença digital será tão sofisticada quanto a sua marca.</p>
-      <a href="#porque" class="cta">
-        <span>Descobrir mais</span>
+      <a href="#projetos" class="cta">
+        <span>Ver nossos projetos</span>
         <i class="fas fa-arrow-right"></i>
       </a>
     </div>
   </section>
 
+
    <section id="projetos" class="projetos">
-    <div class="section-header">
+    <div class="section-header container">
       <h2>Últimos projetos</h2>
     </div>
     
-    <div class="projetos-grid">
-      <a href="https://www.evelinyjhovanabeauty.com/" target="_blank" class="projeto-card">
+    <div class="projetos-grid container">
+      <a href="https://evelinyjhovana.com.br" target="_blank" class="projeto-card">
         <div class="projeto-image">
           <img src="assets/img/eveliny-site.png" alt="Eveliny Jhovana">
           <div class="projeto-overlay">
@@ -91,23 +92,16 @@
             </div>
         </div>
       </a>
-
-    
     </div>
   </section>
 
-  
-
- 
-
-
   <section id="depoimentos" class="depoimentos">
-    <div class="section-header">
+    <div class="section-header container">
       <h2>Feedbacks da qualidade de nosso serviço.</h2>
       <p>Depoimentos reais de quem confiou na Kartano</p>
     </div>
     
-    <div class="depoimentos-container">
+    <div class="depoimentos-container container">
       <div class="depoimento-card">
         <div class="depoimento-content">
           <div class="aspas">
@@ -170,7 +164,7 @@
   </section>
 
   <section id="contato" class="contato">
-  <div class="contato-container">
+  <div class="contato-container container">
     <h2>Eaí, pronto para transformar a sua empresa?</h2>
     <div class="contato-botoes">
       <a href="#" class="botao-contato primario" onclick="abrirWhatsApp('geral')">
@@ -186,6 +180,35 @@
 <a href="#" class="floating-whatsapp" onclick="abrirWhatsApp('geral')" aria-label="Contato via WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
+
+<footer>
+    <div class="footer-container container">
+      <div class="footer-brand">
+        <a href="#inicio" class="logo">
+          <img src="assets/img/teste.png" alt="Kartano Logo">
+        </a>
+        <p class="copyright">
+          &copy; 2024 Kartano. Todos os direitos reservados.
+        </p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#inicio">Home</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/kartano.web/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/35999902059?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="src/js/script.js"></script>
 </body>
