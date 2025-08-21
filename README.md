@@ -1,5 +1,3 @@
-Com certeza\! Aqui está um arquivo README.md completo para o seu projeto, explicando tudo desde a descrição até a instalação e uso.
-
 ### 📝 Descrição
 
 Este é um site de portfólio e apresentação para a **Kartano**, uma empresa focada em criar websites de alto nível que transmitem **status, exclusividade e sofisticação**. O objetivo é apresentar a identidade da marca, exibir projetos recentes, compartilhar depoimentos de clientes satisfeitos e facilitar o contato para novos negócios.
