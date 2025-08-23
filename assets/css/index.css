@@ -68,7 +68,6 @@ body {
 
 .navbar.scrolled {
   background: rgba(10, 10, 10, 0.98);
-  box-shadow: var(--shadow-primary);
 }
 
 .nav-container {
