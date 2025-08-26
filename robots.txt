@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.kartano.com.br/sitemap.xml
