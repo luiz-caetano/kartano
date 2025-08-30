@@ -406,14 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceOptimizations();
     preloadImages();
     
-    // Mostrar notificação de boas-vindas
-    setTimeout(() => {
-        if (sessionStorage.getItem('visitedBefore') !== 'true') {
-            showNotification('👋 Bem-vindo à Kartano! Clique no WhatsApp para conversar conosco!');
-            sessionStorage.setItem('visitedBefore', 'true');
-        }
-    }, 2000);
-    
+  
     // Adicionar efeito de typing no hero
     const heroTitle = document.querySelector('.hero h1');
     if (heroTitle) {

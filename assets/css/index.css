@@ -489,14 +489,14 @@ body {
 }
 
 .projeto-image {
-  width: 100%;
+  width: auto;
   height: 100%;
   position: relative;
 }
 
 .projeto-image img {
   width: 100%;
-  height: 700px;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -563,7 +563,7 @@ body {
 
 .projeto-placeholder {
   text-align: center;
-  color: var(--text-secondary);
+  color: var(--secondary-color);
 }
 
 .projeto-placeholder i {
