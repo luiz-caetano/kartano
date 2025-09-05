@@ -407,23 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     preloadImages();
     
   
-    // Adicionar efeito de typing no hero
-    const heroTitle = document.querySelector('.hero h1');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
-    }
+    
 });
 
 
