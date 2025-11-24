@@ -1,489 +1,683 @@
-// Função para abrir WhatsApp com diferentes mensagens
-function abrirWhatsApp(tipo) {
-    let mensagem = '';
-    
-    switch(tipo) {
-        case 'geral':
-            mensagem = 'Olá! Vi seu site e gostaria de solicitar um orçamento para criar meu website. Pode me ajudar?';
-            break;
-        case 'sobre':
-            mensagem = 'Olá Luiz! Vi sua apresentação no site e gostaria de conversar sobre criar um website para minha empresa.';
-            break;
-        case 'projeto':
-            mensagem = 'Olá! Quero que meu projeto seja o próximo na sua galeria. Pode me passar um orçamento?';
-            break;
-        case 'landing':
-            mensagem = 'Olá! Tenho interesse no plano Landing Page. Pode me enviar mais detalhes e o valor?';
-            break;
-        case 'completo':
-            mensagem = 'Olá! Quero o plano Website Completo. Pode me passar todas as informações?';
-            break;
-        case 'ecommerce':
-            mensagem = 'Olá! Preciso de um e-commerce para minha loja. Pode me ajudar?';
-            break;
-        case 'oferta':
-            mensagem = 'Olá! Vi a oferta especial no seu site. Quero aproveitar o desconto! Pode me ajudar?';
-            break;
-        case 'duvidas':
-            mensagem = 'Olá! Tenho algumas dúvidas sobre os serviços. Pode me esclarecer?';
-            break;
-        default:
-            mensagem = 'Olá! Vi seu site e gostaria de mais informações sobre seus serviços.';
-    }
-    
-    const numeroWhatsApp = '35999902059';
-    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-    
-    // Analytics tracking (se necessário)
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click', {
-            event_category: 'contact',
-            event_label: tipo
-        });
-    }
-    
-    window.open(url, '_blank');
+// ===================================
+// KARTANO - Modern Portfolio JS
+// ===================================
+
+// Initialize GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+// ===================================
+// CUSTOM CURSOR
+// ===================================
+const cursor = document.querySelector('.cursor');
+
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+let followerX = 0;
+let followerY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+// Animate cursor with GSAP
+gsap.ticker.add(() => {
+  // Cursor
+  const dx = mouseX - cursorX;
+  const dy = mouseY - cursorY;
+  cursorX += dx * 0.3;
+  cursorY += dy * 0.3;
+  cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+  // Follower
+  const dfx = mouseX - followerX;
+  const dfy = mouseY - followerY;
+  followerX += dfx * 0.15;
+  followerY += dfy * 0.15;
+  cursorFollower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
+});
+
+// Cursor hover effects
+const hoverElements = document.querySelectorAll('a, button, .project__card');
+hoverElements.forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform += ' scale(1.5)';
+    cursorFollower.style.transform += ' scale(1.5)';
+  });
+  
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
+    cursorFollower.style.transform = cursorFollower.style.transform.replace(' scale(1.5)', '');
+  });
+});
+
+// Hide cursor on mobile
+if (window.innerWidth < 768) {
+  cursor.style.display = 'none';
+  cursorFollower.style.display = 'none';
 }
 
-// Toggle do menu mobile
+// ===================================
+// LOADING SCREEN
+// ===================================
+window.addEventListener('load', () => {
+  const loadingScreen = document.querySelector('.loading-screen');
+  
+  gsap.to('.loading-progress', {
+    width: '100%',
+    duration: 2,
+    ease: 'power2.inOut'
+  });
+  
+  setTimeout(() => {
+    gsap.to(loadingScreen, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        loadingScreen.style.display = 'none';
+        initAnimations();
+      }
+    });
+  }, 2200);
+});
+
+// ===================================
+// NAVIGATION
+// ===================================
+const navbar = document.getElementById('navbar');
 const mobileMenu = document.getElementById('mobile-menu');
 const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav__link');
 
-if (mobileMenu && navMenu) {
-    mobileMenu.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
-
-    // Fechar menu ao clicar em um link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
-}
-
-// Navegação suave e indicação da seção ativa
-const sections = document.querySelectorAll('section');
-const navLinksAll = document.querySelectorAll('.nav-link');
-
-function updateActiveNavLink() {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinksAll.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-// Navbar com efeito de scroll
-const navbar = document.getElementById('navbar');
-
-function updateNavbar() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-}
-
-// Event listeners para scroll
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
-    updateActiveNavLink();
-    updateNavbar();
-    
-    // Lazy loading de imagens (se necessário)
-    lazyLoadImages();
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
 });
 
-// Navegação suave para links internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const offsetTop = target.offsetTop - 80; // Altura da navbar
-            
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
+// Mobile menu toggle
+mobileMenu.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
 });
 
-// Timer para a seção de urgência
-function initTimer() {
-    // Define uma data final (30 dias a partir de agora como exemplo)
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 30);
-    
-    function updateTimer() {
-        const now = new Date().getTime();
-        const distance = endDate.getTime() - now;
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        const diasElement = document.getElementById('dias');
-        const horasElement = document.getElementById('horas');
-        const minutosElement = document.getElementById('minutos');
-        
-        if (diasElement) diasElement.textContent = days.toString().padStart(2, '0');
-        if (horasElement) horasElement.textContent = hours.toString().padStart(2, '0');
-        if (minutosElement) minutosElement.textContent = minutes.toString().padStart(2, '0');
-        
-        if (distance < 0) {
-            // Timer expirado - reinicia para mais 30 dias
-            endDate.setDate(endDate.getDate() + 30);
-        }
-    }
-    
-    updateTimer();
-    setInterval(updateTimer, 60000); // Atualiza a cada minuto
-}
-
-// Lazy loading de imagens
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// Animações ao scroll
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
-        });
-    }, observerOptions);
-    
-    // Observar elementos para animação
-    const elementsToAnimate = document.querySelectorAll(
-        '.hero-content, .section-header, .projeto-card, .depoimento-card, .preco-card, .sobre-content'
-    );
-    
-    elementsToAnimate.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// Validação de formulários (se houver)
-function initFormValidation() {
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validação simples
-            const inputs = form.querySelectorAll('input[required], textarea[required]');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.classList.add('error');
-                } else {
-                    input.classList.remove('error');
-                }
-            });
-            
-            if (isValid) {
-                // Processar formulário
-                console.log('Formulário válido');
-                // Aqui você pode adicionar o código para enviar o formulário
-            }
-        });
-    });
-}
-
-// Função para mostrar notificações
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === 'success' ? 'var(--success-color)' : 'var(--warning-color)'};
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        font-weight: 600;
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Adicionar CSS para animações de notificação
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-    
-    .error {
-        border: 2px solid var(--warning-color) !important;
-        animation: shake 0.5s ease;
-    }
-    
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        75% { transform: translateX(5px); }
-    }
-    
-    .menu-open {
-        overflow: hidden;
-    }
-    
-    .animate {
-        animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    .loaded {
-        opacity: 1;
-        transition: opacity 0.3s ease;
-    }
-    
-    img[data-src] {
-        opacity: 0;
-    }
-`;
-
-document.head.appendChild(notificationStyles);
-
-// Função para detectar dispositivo móvel
-function isMobile() {
-    return window.innerWidth <= 768;
-}
-
-// Otimizações de performance
-function initPerformanceOptimizations() {
-    // Debounce para eventos de scroll
-    let ticking = false;
-    
-    function handleScroll() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                updateActiveNavLink();
-                updateNavbar();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    
-    window.removeEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-}
-
-// Tracking de eventos (Google Analytics)
-function trackEvent(action, category, label) {
-    if (typeof gtag !== 'undefined') {
-        gtag('event', action, {
-            event_category: category,
-            event_label: label
-        });
-    }
-}
-
-// Adicionar tracking aos botões importantes
-document.addEventListener('click', function(e) {
-    const button = e.target.closest('.cta, .botao-contato, .btn-preco, .floating-whatsapp');
-    if (button) {
-        const buttonText = button.textContent.trim();
-        trackEvent('click', 'button', buttonText);
-    }
+// Close mobile menu on link click
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
 });
 
-// Função para precarregar imagens importantes
-function preloadImages() {
-    const importantImages = [
-        'assets/img/teste.png',
-        'assets/img/eveliny-site.png',
-        'assets/img/doctor-site.png',
-        'assets/img/orlando-costa.png'
-    ];
-    
-    importantImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-}
+// Active nav link on scroll
+const sections = document.querySelectorAll('section');
 
-// Easter egg - Konami Code
-let konamiCode = [];
-const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-
-document.addEventListener('keydown', function(e) {
-    konamiCode.push(e.keyCode);
-    if (konamiCode.length > konamiSequence.length) {
-        konamiCode.shift();
-    }
-    
-    if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
-        showNotification('🚀 Modo desenvolvedor ativado! Você encontrou o easter egg!', 'success');
-        document.body.style.filter = 'hue-rotate(180deg)';
-        setTimeout(() => {
-            document.body.style.filter = 'none';
-        }, 3000);
-        konamiCode = [];
-    }
-});
-
-// Inicialização quando DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Kartano Website carregado com sucesso!');
-    
-    // Inicializar todas as funcionalidades
-    initTimer();
-    initScrollAnimations();
-    initFormValidation();
-    initPerformanceOptimizations();
-    preloadImages();
-    
+window.addEventListener('scroll', () => {
+  let current = '';
   
-    
-});
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (window.pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
 
-
-
-// Função para salvar leads (localStorage como backup)
-function salvarLead(tipo, timestamp = new Date()) {
-    const leads = JSON.parse(localStorage.getItem('kartano_leads') || '[]');
-    leads.push({ tipo, timestamp });
-    localStorage.setItem('kartano_leads', JSON.stringify(leads));
-}
-
-// Interceptar cliques no WhatsApp para salvar leads
-const originalAbrirWhatsApp = abrirWhatsApp;
-abrirWhatsApp = function(tipo) {
-    salvarLead(tipo);
-    trackEvent('lead_generation', 'whatsapp', tipo);
-    return originalAbrirWhatsApp(tipo);
-};
-
-
-function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // Fecha todos os outros FAQs
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Se não estava ativo, ativa o clicado
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
-
-        // Função para abrir WhatsApp (você pode adaptar conforme sua função existente)
-        function abrirWhatsApp(tipo) {
-            let mensagem = 'Olá! Tenho algumas dúvidas sobre landing pages. Pode me esclarecer?';
-            const numeroWhatsApp = '35999902059';
-            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
-        }
-
-        // Animação ao scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        document.querySelectorAll('.faq-item').forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
-        });
-
-// Animação ao scroll
-const observerFaq = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
     }
   });
 });
 
-document.querySelectorAll('.faq-item').forEach((item, index) => {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(20px)';
-  item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-  observerFaq.observe(item);
+// Smooth scroll
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      const offsetTop = targetSection.offsetTop - 80;
+      
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
 });
 
+// ===================================
+// GSAP ANIMATIONS
+// ===================================
+function initAnimations() {
+  // Hero animations
+  const heroTimeline = gsap.timeline();
+  
+  heroTimeline
+    .from('.hero__badge', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    })
+    .from('.hero__title-line', {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .from('.hero__description', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.6')
+    .from('.hero__actions .btn', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .from('.hero__stat', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    }, '-=0.6');
+  
+  // Hero cards animation
+  gsap.from('.hero__card', {
+    scale: 0.8,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: 'back.out(1.7)',
+    scrollTrigger: {
+      trigger: '.hero__visual',
+      start: 'top center+=100',
+      toggleActions: 'play none none reverse'
+    }
+  });
+  
+  // Hero cards parallax
+  gsap.to('.hero__card--1', {
+    y: -30,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+  
+  gsap.to('.hero__card--2', {
+    y: -50,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+  
+  gsap.to('.hero__card--3', {
+    y: -70,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+  
+  // Section headers animation
+  gsap.utils.toArray('.section__header').forEach(header => {
+    gsap.from(header, {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: header,
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  });
+  
+  // Projects animation
+  gsap.utils.toArray('.project__card').forEach((card, index) => {
+    gsap.from(card, {
+      y: 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      },
+      delay: index * 0.1
+    });
+  });
+  
+  // Pricing cards animation
+  gsap.utils.toArray('.pricing__card').forEach((card, index) => {
+    gsap.from(card, {
+      y: 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      },
+      delay: index * 0.15
+    });
+  });
+  
+  // Testimonials animation
+  gsap.utils.toArray('.testimonial__card').forEach((card, index) => {
+    gsap.from(card, {
+      x: index % 2 === 0 ? -100 : 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  });
+  
+  // FAQ animation
+  gsap.utils.toArray('.faq__item').forEach((item, index) => {
+    gsap.from(item, {
+      y: 50,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: item,
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      },
+      delay: index * 0.1
+    });
+  });
+  
+  // Parallax background gradient
+  gsap.to('.hero__gradient', {
+    y: 200,
+    scale: 1.2,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+  
+  // Stats counter animation
+  const stats = document.querySelectorAll('.hero__stat-number');
+  stats.forEach(stat => {
+    const target = stat.textContent;
+    const isNumber = /^\d+$/.test(target);
+    
+    if (isNumber) {
+      gsap.from(stat, {
+        textContent: 0,
+        duration: 2,
+        ease: 'power1.inOut',
+        snap: { textContent: 1 },
+        scrollTrigger: {
+          trigger: stat,
+          start: 'top center+=200',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    }
+  });
+}
 
-console.log('🎨 Kartano - Criando experiências digitais únicas | Desenvolvido com ❤️ por Luiz');
+// ===================================
+// FAQ ACCORDION
+// ===================================
+function toggleFaq(button) {
+  const faqItem = button.closest('.faq__item');
+  const wasActive = faqItem.classList.contains('active');
+  
+  // Close all FAQ items
+  document.querySelectorAll('.faq__item').forEach(item => {
+    item.classList.remove('active');
+    const answer = item.querySelector('.faq__answer');
+    gsap.to(answer, {
+      maxHeight: 0,
+      duration: 0.3,
+      ease: 'power2.inOut'
+    });
+  });
+  
+  // Open clicked item if it wasn't active
+  if (!wasActive) {
+    faqItem.classList.add('active');
+    const answer = faqItem.querySelector('.faq__answer');
+    gsap.to(answer, {
+      maxHeight: answer.scrollHeight + 'px',
+      duration: 0.3,
+      ease: 'power2.inOut'
+    });
+  }
+}
+
+// ===================================
+// WHATSAPP FUNCTION
+// ===================================
+function abrirWhatsApp(tipo) {
+  let mensagem = '';
+  
+  const mensagens = {
+    'geral': 'Olá! Vi seu site e gostaria de solicitar um orçamento para criar meu website. Pode me ajudar?',
+    'sobre': 'Olá Luiz! Vi sua apresentação no site e gostaria de conversar sobre criar um website para minha empresa.',
+    'projeto': 'Olá! Quero que meu projeto seja o próximo na sua galeria. Pode me passar um orçamento?',
+    'landing': 'Olá! Tenho interesse no plano Landing Page. Pode me enviar mais detalhes e o valor?',
+    'completo': 'Olá! Quero o plano Website Completo. Pode me passar todas as informações?',
+    'ecommerce': 'Olá! Preciso de um e-commerce para minha loja. Pode me ajudar?',
+    'oferta': 'Olá! Vi a oferta especial no seu site. Quero aproveitar o desconto! Pode me ajudar?',
+    'duvidas': 'Olá! Tenho algumas dúvidas sobre os serviços. Pode me esclarecer?'
+  };
+  
+  mensagem = mensagens[tipo] || mensagens['geral'];
+  
+  const numeroWhatsApp = '35999902059';
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+  
+  // Analytics tracking (if available)
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'whatsapp_click', {
+      event_category: 'contact',
+      event_label: tipo
+    });
+  }
+  
+  window.open(url, '_blank');
+}
+
+// Make function globally available
+window.abrirWhatsApp = abrirWhatsApp;
+window.toggleFaq = toggleFaq;
+
+// ===================================
+// INTERSECTION OBSERVER
+// ===================================
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+  });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+  observer.observe(section);
+});
+
+// ===================================
+// PROJECT CARDS TILT EFFECT
+// ===================================
+const projectCards = document.querySelectorAll('.project__card');
+
+projectCards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+  });
+});
+
+// ===================================
+// HERO CARDS MOUSE PARALLAX
+// ===================================
+const heroVisual = document.querySelector('.hero__visual');
+const heroCards = document.querySelectorAll('.hero__card');
+
+if (heroVisual && window.innerWidth > 1024) {
+  heroVisual.addEventListener('mousemove', (e) => {
+    const rect = heroVisual.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    
+    heroCards.forEach((card, index) => {
+      const speed = (index + 1) * 10;
+      gsap.to(card, {
+        x: x * speed,
+        y: y * speed,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  });
+  
+  heroVisual.addEventListener('mouseleave', () => {
+    heroCards.forEach(card => {
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  });
+}
+
+// ===================================
+// PRICING CARDS HOVER EFFECT
+// ===================================
+const pricingCards = document.querySelectorAll('.pricing__card');
+
+pricingCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    gsap.to(card, {
+      scale: 1.02,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, {
+      scale: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
+});
+
+// ===================================
+// TESTIMONIAL CARDS ANIMATION
+// ===================================
+const testimonialCards = document.querySelectorAll('.testimonial__card');
+
+testimonialCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    gsap.to(card, {
+      y: -10,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, {
+      y: 0,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
+});
+
+// ===================================
+// FLOATING WHATSAPP PULSE
+// ===================================
+const floatingWhatsapp = document.querySelector('.floating-whatsapp');
+
+gsap.to(floatingWhatsapp, {
+  scale: 1.1,
+  duration: 0.8,
+  repeat: -1,
+  yoyo: true,
+  ease: 'power1.inOut'
+});
+
+// ===================================
+// PAGE VISIBILITY
+// ===================================
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Pause animations when page is hidden
+    gsap.globalTimeline.pause();
+  } else {
+    // Resume animations when page is visible
+    gsap.globalTimeline.resume();
+  }
+});
+
+// ===================================
+// PERFORMANCE OPTIMIZATIONS
+// ===================================
+
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Optimize scroll events
+window.addEventListener('scroll', debounce(() => {
+  // Scroll optimizations here
+}, 10), { passive: true });
+
+// Lazy load images
+const images = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+      imageObserver.unobserve(img);
+    }
+  });
+});
+
+images.forEach(img => imageObserver.observe(img));
+
+// ===================================
+// CONSOLE MESSAGE
+// ===================================
+console.log('%c🎨 Kartano Portfolio', 'font-size: 20px; font-weight: bold; color: #6366f1;');
+console.log('%cDesenvolvido com ❤️ por Luiz Caetano', 'font-size: 14px; color: #a1a1aa;');
+console.log('%cVisite: https://www.kartano.com.br', 'font-size: 12px; color: #71717a;');
+
+// ===================================
+// ACCESSIBILITY
+// ===================================
+
+// Skip to content link
+const skipLink = document.createElement('a');
+skipLink.href = '#inicio';
+skipLink.className = 'skip-to-content';
+skipLink.textContent = 'Pular para o conteúdo';
+skipLink.style.cssText = `
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 10000;
+`;
+skipLink.addEventListener('focus', () => {
+  skipLink.style.top = '0';
+});
+skipLink.addEventListener('blur', () => {
+  skipLink.style.top = '-40px';
+});
+document.body.prepend(skipLink);
+
+// Keyboard navigation for FAQ
+document.querySelectorAll('.faq__question').forEach(button => {
+  button.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleFaq(button);
+    }
+  });
+});
+
+// Focus trap for mobile menu
+document.getElementById('mobile-menu').addEventListener('click', () => {
+  if (navMenu.classList.contains('active')) {
+    const focusableElements = navMenu.querySelectorAll('a, button');
+    if (focusableElements.length > 0) {
+      setTimeout(() => focusableElements[0].focus(), 100);
+    }
+  }
+});
+
+// ===================================
+// ERROR HANDLING
+// ===================================
+window.addEventListener('error', (e) => {
+  console.error('Global error:', e.error);
+});
+
+window.addEventListener('unhandledrejection', (e) => {
+  console.error('Unhandled promise rejection:', e.reason);
+});
+
+// ===================================
+// INITIALIZATION COMPLETE
+// ===================================
+console.log('✅ Portfolio initialized successfully');

@@ -3,426 +3,616 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kartano | Criação de Websites Exclusivos que Convertem</title>
+  <title>Kartano - Criação de Websites Exclusivos</title>
   <meta name="description" content="Transforme sua presença digital com websites exclusivos que geram resultados. A Kartano cria sites modernos e sofisticados que convertem visitantes em clientes.">
   <meta name="keywords" content="Kartano, criação de sites, websites exclusivos, desenvolvimento web, presença digital, Varginha MG, sites que convertem">
   <meta name="author" content="Kartano">
   <meta name="google-site-verification" content="bSIKsfx_re7lIJ5OvFnek8GnqNhQLUoY3dQTZQVQQTM" />
-  <meta property="og:title" content="Kartano | Criação de Websites Exclusivos que Convertem">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kartano Criação de Websites Exclusivos">
   <meta property="og:description" content="Websites que transmitem status, exclusividade e sofisticação. Aumente a presença digital da sua marca.">
   <meta property="og:image" content="https://www.kartano.com.br/assets/img/teste.png">
   <meta property="og:url" content="https://www.kartano.com.br">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="assets/css/index.css">
+  
+  <!-- Favicon -->
   <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="nav-container container">
-      <a href="#inicio" class="logo">
-        <div class="logo-img">
-             <img src="assets/img/teste.png" alt="Kartano Logo" style="width: 100%; height: 100%;"> 
-        </div>
+  
+
+
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="assets/img/teste.png" alt="Kartano">
+      </div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav__container container">
+      <a href="#inicio" class="nav__logo">
+        <img src="assets/img/teste.png" alt="Kartano Logo">
       </a>
       
-      <ul class="nav-menu" id="nav-menu">
-        <li class="nav-item">
-          <a href="#inicio" class="nav-link">HOME</a>
+      <ul class="nav__menu" id="nav-menu">
+        <li class="nav__item">
+          <a href="#inicio" class="nav__link">Início</a>
         </li>
-     
-        <li class="nav-item">
-          <a href="#projetos" class="nav-link">PROJETOS</a>
+        <li class="nav__item">
+          <a href="#projetos" class="nav__link">Projetos</a>
         </li>
-        <li class="nav-item">
-          <a href="#precos" class="nav-link">PREÇOS</a>
+        <li class="nav__item">
+          <a href="#pacotes" class="nav__link">Pacotes</a>
         </li>
-        <li class="nav-item">
-          <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
+        <li class="nav__item">
+          <a href="#depoimentos" class="nav__link">Depoimentos</a>
         </li>
-     
+        <li class="nav__item">
+          <a href="#faq" class="nav__link">FAQ</a>
+        </li>
+        <li class="nav__item">
+          <a href="#" class="nav__cta" onclick="abrirWhatsApp('geral')">
+            Iniciar Projeto
+          </a>
+        </li>
       </ul>
       
-      <div class="menu-toggle" id="mobile-menu">
+      <button class="nav__toggle" id="mobile-menu" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section id="inicio" class="hero">
-    <div class="hero-content container">
+    <div class="hero__background">
+      <div class="hero__gradient"></div>
+      <div class="hero__grid"></div>
+    </div>
     
-      <h1>Seu site, sua vitrine, seu sucesso</h1>
-      <p>
-        Criamos websites <strong>exclusivos e sofisticados</strong> que não apenas impressionam, 
-        mas <strong>convertem visitantes em clientes</strong>. Sua presença digital será tão 
-        impactante quanto sua marca merece.
-      </p>
+    <div class="hero__container container">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">Disponível para novos projetos</span>
+        </div>
+        
+        <h1 class="hero__title">
+          <span class="hero__title-line">Seu site,</span>
+          <span class="hero__title-line">sua vitrine,</span>
+          <span class="hero__title-line hero__title-line--gradient">seu sucesso</span>
+        </h1>
+        
+        <p class="hero__description">
+          Criamos websites <strong>exclusivos e sofisticados</strong> que não apenas impressionam, 
+          mas <strong>convertem visitantes em clientes</strong>. Sua presença digital será tão 
+          impactante quanto sua marca merece.
+        </p>
+        
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary" onclick="abrirWhatsApp('geral')">
+            <span>Quero meu site agora</span>
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#projetos" class="btn btn--secondary">
+            <span>Ver projetos</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-number">50+</div>
+            <div class="hero__stat-label">Projetos Entregues</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-number">98%</div>
+            <div class="hero__stat-label">Satisfação</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-number">7 dias</div>
+            <div class="hero__stat-label">Entrega Média</div>
+          </div>
+        </div>
+      </div>
       
-     
+      <div class="hero__visual">
+        <div class="hero__card hero__card--1">
+          <div class="card__glow"></div>
+          <img src="assets/img/eveliny-site.png" alt="Projeto 1">
+        </div>
+        <div class="hero__card hero__card--2">
+          <div class="card__glow"></div>
+          <img src="assets/img/doctor-site.png" alt="Projeto 2">
+        </div>
+        <div class="hero__card hero__card--3">
+          <div class="card__glow"></div>
+          <img src="assets/img/orlando-costa.png" alt="Projeto 3">
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projetos" class="projects">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Portfolio</span>
+        <h2 class="section__title">Últimos projetos</h2>
+        <p class="section__description">
+          Cada projeto é único, criado com atenção aos detalhes e focado em resultados
+        </p>
+      </div>
       
-      <div class="hero-buttons">
-        <a href="#" class="cta" onclick="abrirWhatsApp('geral')">
-          <span>Quero meu site agora</span>
-          <i class="fab fa-whatsapp"></i>
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <a href="https://www.evelinyjhovanabeauty.com/" target="_blank" class="project__card">
+          <div class="project__image">
+            <img src="assets/img/eveliny-site.png" alt="Eveliny Jhovana Beauty">
+            <div class="project__overlay">
+              <div class="project__info">
+                <h3 class="project__title">Eveliny Jhovana Beauty</h3>
+                <p class="project__category">Landing Page • Beauty</p>
+              </div>
+              <div class="project__link">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
         </a>
-        <a href="#projetos" class="cta secondary">
-          <span>Ver projetos</span>
-          <i class="fas fa-arrow-right"></i>
+
+        <!-- Project 2 -->
+        <a href="https://projetos.kartano.com.br/" target="_blank" class="project__card">
+          <div class="project__image">
+            <img src="assets/img/orlando-costa.png" alt="Orlando Costa">
+            <div class="project__overlay">
+              <div class="project__info">
+                <h3 class="project__title">Orlando Costa</h3>
+                <p class="project__category">Website Corporativo</p>
+              </div>
+              <div class="project__link">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
         </a>
+
+        <!-- Project 3 -->
+        <a href="https://doctor.kartano.com.br" target="_blank" class="project__card">
+          <div class="project__image">
+            <img src="assets/img/doctor-site.png" alt="Dr. Médico">
+            <div class="project__overlay">
+              <div class="project__info">
+                <h3 class="project__title">Dr. Médico</h3>
+                <p class="project__category">Landing Page Profissional</p>
+              </div>
+              <div class="project__link">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Next Project -->
+        <div class="project__card project__card--next" onclick="abrirWhatsApp('projeto')">
+          <div class="project__next-content">
+            <div class="project__next-icon">
+              <i class="fas fa-plus"></i>
+            </div>
+            <h3 class="project__next-title">Seu projeto pode ser o próximo</h3>
+            <p class="project__next-text">Vamos criar algo incrível juntos</p>
+            <button class="btn btn--outline">
+              <span>Começar agora</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="projetos" class="projetos">
-  <div class="section-header container">
-    <h2>Últimos projetos</h2>
-  </div>
-  
-  <div class="projetos-grid container">
-    <!-- Projeto Eveliny Jhovana -->
-    <a href="https://www.evelinyjhovanabeauty.com/" target="_blank" class="projeto-card">
-      <div class="projeto-image">
-        <img src="assets/img/eveliny-site.png" alt="Eveliny Jhovana Beauty - Website Exclusivo">
+  <!-- Pricing Section -->
+  <section id="pacotes" class="pricing">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Investimento</span>
+        <h2 class="section__title">Escolha seu pacote de crescimento</h2>
+        <p class="section__description">
+          Landing + posts mensais para você nunca mais ficar sem clientes
+        </p>
       </div>
-    </a>
+      
+      <div class="pricing__grid">
+        <!-- Starter -->
+        <div class="pricing__card">
+          <div class="pricing__header">
+            <h3 class="pricing__name">Starter</h3>
+            <p class="pricing__subtitle">Ideal para começar</p>
+          </div>
+          
+          
+          
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Landing page profissional</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>8 posts por mês</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>2 meses de alteração sem custo</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Domínio incluso</span>
+            </li>
+          </ul>
+          
+          <a href="#" class="btn btn--outline btn--full" onclick="abrirWhatsApp('landing')">
+            <span>Escolher Starter</span>
+          </a>
+        </div>
 
-    <!-- Projeto Orlando Costa -->
-    <a href="https://projetos.kartano.com.br/" target="_blank" class="projeto-card">
-      <div class="projeto-image">
-        <img src="assets/img/orlando-costa.png" alt="Orlando Costa - Website Corporativo">
-      </div>
-    </a>
+        <!-- Growth (Popular) -->
+        <div class="pricing__card pricing__card--popular">
+          <div class="pricing__badge">Mais escolhido</div>
+          
+          <div class="pricing__header">
+            <h3 class="pricing__name">Growth</h3>
+            <p class="pricing__subtitle">Melhor custo-benefício</p>
+          </div>
+          
+          
+          
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Landing page profissional</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>20 posts por mês</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Calendário mensal de posts</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>4 meses de alteração sem custo</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Domínio e Hospedagem Incluso</span>
+            </li>
+          </ul>
+          
+          <a href="#" class="btn btn--primary btn--full" onclick="abrirWhatsApp('completo')">
+            <span>Escolher Growth</span>
+          </a>
+        </div>
 
-    <!-- Projeto Doctor -->
-    <a href="https://doctor.kartano.com.br" target="_blank" class="projeto-card">
-      <div class="projeto-image">
-        <img src="assets/img/doctor-site.png" alt="Dr. Médico - Landing Page Profissional">
-      </div>
-    </a>
-
-    <!-- Próximo Projeto -->
-    <div class="projeto-card próximo-projeto" onclick="abrirWhatsApp('projeto')" style="cursor: pointer;" role="button" aria-label="Iniciar projeto via WhatsApp">
-      <div class="projeto-image">
-        <div class="projeto-placeholder">
-          <i class="fas fa-plus"></i>
-          <h3>Seu projeto pode ser o próximo</h3>
-          <a href="javascript:void(0);" class="btn-projeto" onclick="abrirWhatsApp('projeto')">
-            Começar agora
+        <!-- Prime -->
+        <div class="pricing__card">
+          <div class="pricing__header">
+            <h3 class="pricing__name">Prime</h3>
+            <p class="pricing__subtitle">Solução completa</p>
+          </div>
+          
+          
+          
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Tudo do Growth</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>2 criativos de anúncio/mês</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>1 ano de alteração sem custo</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Relatório detalhado</span>
+            </li>
+            <li class="pricing__feature">
+              <i class="fas fa-check"></i>
+              <span>Reunião Mensal</span>
+            </li>
+          </ul>
+          
+          <a href="#" class="btn btn--outline btn--full" onclick="abrirWhatsApp('ecommerce')">
+            <span>Escolher Prime</span>
           </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-  <section id="precos" class="precos">
-    <div class="section-header container">
-      <h2>Escolha seu pacote de crescimento</h2>
-      <p>Landing + posts mensais para você nunca mais ficar sem clientes</p>
-    </div>
-    <div class="precos-grid container">
-      
-      <!-- STARTER -->
-      <div class="preco-card">
-        <div class="preco-header"><h3>Starter</h3></div>
-        <div class="preco-valor">
-          <p class="setup">Setup inicial <strong>R$ 799</strong></p>
-          <p class="mensal">Depois apenas <br> <strong>R$ 497/mês</strong></p>
-        </div>
-        <ul class="preco-features">
-          <li><i class="fas fa-check"></i> Landing page profissional</li>
-          <li><i class="fas fa-check"></i> 8 posts por mês</li>
-          <li><i class="fas fa-check"></i> 2 meses de alteração sem custo</li>
-          <li><i class="fas fa-check"></i> Domínio incluso</li>
-        </ul>
-        <a href="#" class="btn-preco">Escolher Starter</a>
-      </div>
-
-      <!-- GROWTH (MAIS ESCOLHIDO) -->
-      <div class="preco-card popular">
-        <div class="preco-badge">Mais escolhido</div>
-        <div class="preco-header"><h3>Growth</h3></div>
-        <div class="preco-valor">
-          <p class="setup">Setup inicial <strong>R$ 1.290</strong></p>
-          <p class="mensal">Depois apenas <br> <strong>R$ 897/mês</strong></p>
-        </div>
-        <ul class="preco-features">
-          <li><i class="fas fa-check"></i> Landing page profissional</li>
-          <li><i class="fas fa-check"></i> 20 posts por mês</li>
-          <li><i class="fas fa-check"></i> Calendário mensal de posts</li>
-          <li><i class="fas fa-check"></i> 4 meses de alteração sem custo</li>
-          <li><i class="fas fa-check"></i> Domínio e Hospedagem Incluso</li>
-        </ul>
-        <a href="#" class="btn-preco">Escolher Growth</a>
-      </div>
-
-      <!-- PRIME -->
-      <div class="preco-card">
-        <div class="preco-header"><h3>Prime</h3></div>
-        <div class="preco-valor">
-          <p class="setup">Setup inicial <strong>R$ 1.990</strong></p>
-          <p class="mensal">Depois apenas <br>
-            <strong>R$ 1.490/mês</strong></p>
-        </div>
-        <ul class="preco-features">
-          <li><i class="fas fa-check"></i> Tudo do Growth</li>
-          <li><i class="fas fa-check"></i> 2 criativos de anúncio/mês</li>
-          <li><i class="fas fa-check"></i> 1 ano de alteração sem custo</li>
-          <li><i class="fas fa-check"></i> Relatório detalhado</li>
-          <li><i class="fas fa-check"></i> Reunião Mensal</li>
-        </ul>
-        <a href="#" class="btn-preco">Escolher Prime</a>
-      </div>
-
-    </div>
   </section>
 
-  <section id="depoimentos" class="depoimentos">
-    <div class="section-header container">
-      <h2>O que nossos clientes dizem</h2>
-      <p>Depoimentos reais de quem transformou seus negócios conosco</p>
-    </div>
-    
-    <div class="depoimentos-container container">
-      <div class="depoimento-card">
-        <div class="depoimento-content">
-          <div class="aspas">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <p> 
-            "Bom dia Luiz, e toda equipe! 
-            Gostaria de agradecer pelo site que desenvolveram pra mim, 
-            eu amei e todo mundo que acessa disse que está a minha cara! 
-            Vocês foram muito atenciosos e incríveis! Obrigada!"
-          </p>
-          <div class="depoimento-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="depoimento-autor">
-          <div class="autor-avatar">
-            <img src="assets/img/Eveliny.png" alt="Eveliny Jhovana">
-          </div>
-          <div class="autor-info">
-            <h4>Eveliny Jhovana</h4>
-            <span>CEO - Eveliny Jhovana Beauty</span>
-          </div>
-          <div class="whatsapp-badge">
-            <i class="fab fa-whatsapp"></i>
-            <span>WhatsApp</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="depoimento-card">
-        <div class="depoimento-content">
-          <div class="aspas">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <p>"Estudei junto com o Luiz e fizemos alguns trabalhos juntos. 
-            Ele, de longe, era o cara que mais se destacava na turma. 
-            O Luiz é dedicado, sempre busca adquirir conhecimento e é muito responsável.
-             Em pouco tempo de curso já estava programando. 
-             Com certeza vai ter muito sucesso na carreira como dev."</p>
-          <div class="depoimento-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="depoimento-autor">
-          <div class="autor-avatar">
-            <img src="assets/img/Gustavo.jpeg" alt="Gustavo Coimbra"> 
-          </div>
-          <div class="autor-info">
-            <h4>Gustavo Coimbra</h4>
-            <span>Full Stack Developer</span>
-          </div>
-        <div class="linkedin-badge">
-            <i class="fab fa-linkedin"></i>
-            <span>LinkedIn</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="faq">
-  <div class="container">
-    <div class="section-header">
-      <h2>Perguntas Frequentes</h2>
-      <p>Tire suas dúvidas sobre landing pages e nossos serviços</p>
-    </div>
-
-    <div class="faq-container">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-laptop-code faq-icon"></i>
-          <h3>O que é uma landing page e por que preciso de uma?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Uma landing page é uma página focada em converter visitantes em leads ou clientes. 
-            Diferente de um site comum, ela tem um objetivo específico: fazer o visitante realizar uma ação (comprar, se cadastrar, entrar em contato). 
-            É essencial para campanhas de marketing digital e pode aumentar suas conversões em até 25%.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-clock faq-icon"></i>
-          <h3>Qual o prazo de entrega de uma landing page?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            O prazo médio é de 7 dias úteis para uma landing page completa. 
-            Isso inclui design personalizado, desenvolvimento, testes de responsividade, otimizações para conversão e integração com WhatsApp.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-mobile-alt faq-icon"></i>
-          <h3>A landing page funciona bem no celular?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Sim! Todas as nossas landing pages são 100% responsivas e
-             otimizadas para todos os dispositivos: desktop, tablet e smartphone. 
-             Mais de 70% dos acessos hoje vêm do mobile, por isso garantimos uma experiência perfeita em qualquer tela.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-chart-line faq-icon"></i>
-          <h3>Como vocês garantem que a página vai converter?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Aplicamos técnicas comprovadas de CRO (Conversion Rate Optimization): headlines persuasivas, botões estratégicos, prova social, senso de urgência, design limpo e focado no objetivo. Também fazemos integração direta com WhatsApp para facilitar o contato.
-          </div>
-        </div>
-      </div>
-
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-server faq-icon"></i>
-          <h3>A hospedagem e domínio estão inclusos?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Sim! Incluímos hospedagem profissional e certificado SSL por 12 meses. Se você já tem um domínio, configuramos tudo. Se não tem, podemos registrar um novo domínio por uma taxa adicional de R$ 40/ano (.com.br) ou R$ 60/ano (.com).
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-palette faq-icon"></i>
-          <h3>Posso escolher as cores e o design da página?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Absolutamente! Criamos um design 100% personalizado baseado na sua marca, cores, logo e preferências. Antes de começar, fazemos um briefing detalhado para entender sua visão e criar algo único que represente perfeitamente seu negócio.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <i class="fas fa-search faq-icon"></i>
-          <h3>A landing page será otimizada para SEO?</h3>
-          <div class="faq-toggle">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-content">
-            Sim! Aplicamos técnicas básicas de SEO: títulos otimizados, meta descriptions, estrutura HTML semântica, imagens otimizadas e velocidade de carregamento rápida. Para SEO avançado, oferecemos um pacote adicional com pesquisa de palavras-chave e otimizações específicas.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  
-  </div>
-</section>
-
-  
-
-  <a href="#" class="floating-whatsapp" onclick="abrirWhatsApp('geral')" aria-label="Contato via WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-    <span class="floating-text">Fale comigo!</span>
-  </a>
-
-  <footer>
-    <div class="footer-container container">
-      <div class="footer-brand">
-        <a href="#inicio" class="logo">
-          <img src="assets/img/teste.png" alt="Kartano Logo">
-        </a>
-        <p>Transformando ideias em experiências digitais únicas</p>
-        <p class="copyright">
-          &copy; 2025 Kartano. Todos os direitos reservados.
+  <!-- Testimonials Section -->
+  <section id="depoimentos" class="testimonials">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Depoimentos</span>
+        <h2 class="section__title">O que nossos clientes dizem</h2>
+        <p class="section__description">
+          Depoimentos reais de quem transformou seus negócios conosco
         </p>
       </div>
-      <div class="footer-links">
-        <h4>Navegação</h4>
-        <ul>
-          <li><a href="#inicio">Home</a></li>
-          <li><a href="#sobre">Sobre Mim</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#precos">Preços</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
+      
+      <div class="testimonials__grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial__card">
+          <div class="testimonial__rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          
+          <p class="testimonial__text">
+            "Bom dia Luiz, e toda equipe! Gostaria de agradecer pelo site que desenvolveram pra mim, 
+            eu amei e todo mundo que acessa disse que está a minha cara! Vocês foram muito atenciosos 
+            e incríveis! Obrigada!"
+          </p>
+          
+          <div class="testimonial__author">
+            <img src="assets/img/Eveliny.png" alt="Eveliny Jhovana" class="testimonial__avatar">
+            <div class="testimonial__info">
+              <h4 class="testimonial__name">Eveliny Jhovana</h4>
+              <p class="testimonial__role">CEO - Eveliny Jhovana Beauty</p>
+            </div>
+            <div class="testimonial__badge testimonial__badge--whatsapp">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial__card">
+          <div class="testimonial__rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          
+          <p class="testimonial__text">
+            "Estudei junto com o Luiz e fizemos alguns trabalhos juntos. Ele, de longe, era o cara 
+            que mais se destacava na turma. O Luiz é dedicado, sempre busca adquirir conhecimento e 
+            é muito responsável. Em pouco tempo de curso já estava programando. Com certeza vai ter 
+            muito sucesso na carreira como dev."
+          </p>
+          
+          <div class="testimonial__author">
+            <img src="assets/img/Gustavo.jpeg" alt="Gustavo Coimbra" class="testimonial__avatar">
+            <div class="testimonial__info">
+              <h4 class="testimonial__name">Gustavo Coimbra</h4>
+              <p class="testimonial__role">Full Stack Developer</p>
+            </div>
+            <div class="testimonial__badge testimonial__badge--linkedin">
+              <i class="fab fa-linkedin"></i>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer-social">
-        <h4>Siga-nos</h4>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/kartano.web/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/35999902059?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Dúvidas</span>
+        <h2 class="section__title">Perguntas Frequentes</h2>
+        <p class="section__description">
+          Tire suas dúvidas sobre landing pages e nossos serviços
+        </p>
+      </div>
+      
+      <div class="faq__grid">
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-laptop-code faq__icon"></i>
+              <h3 class="faq__title">O que é uma landing page e por que preciso de uma?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Uma landing page é uma página focada em converter visitantes em leads ou clientes. 
+              Diferente de um site comum, ela tem um objetivo específico: fazer o visitante realizar 
+              uma ação (comprar, se cadastrar, entrar em contato). É essencial para campanhas de 
+              marketing digital e pode aumentar suas conversões em até 25%.
+            </p>
+          </div>
         </div>
-        <div class="footer-contact">
-          <p><i class="fas fa-phone"></i> (35) 99990-2059</p>
-          <p><i class="fas fa-envelope"></i> contato@kartano.com.br</p>
+
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-clock faq__icon"></i>
+              <h3 class="faq__title">Qual o prazo de entrega de uma landing page?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              O prazo médio é de 7 dias úteis para uma landing page completa. Isso inclui design 
+              personalizado, desenvolvimento, testes de responsividade, otimizações para conversão 
+              e integração com WhatsApp.
+            </p>
+          </div>
         </div>
+
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-mobile-alt faq__icon"></i>
+              <h3 class="faq__title">A landing page funciona bem no celular?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Sim! Todas as nossas landing pages são 100% responsivas e otimizadas para todos os 
+              dispositivos: desktop, tablet e smartphone. Mais de 70% dos acessos hoje vêm do mobile, 
+              por isso garantimos uma experiência perfeita em qualquer tela.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-chart-line faq__icon"></i>
+              <h3 class="faq__title">Como vocês garantem que a página vai converter?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Aplicamos técnicas comprovadas de CRO (Conversion Rate Optimization): headlines 
+              persuasivas, botões estratégicos, prova social, senso de urgência, design limpo e 
+              focado no objetivo. Também fazemos integração direta com WhatsApp para facilitar o contato.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-server faq__icon"></i>
+              <h3 class="faq__title">A hospedagem e domínio estão inclusos?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Sim! Incluímos hospedagem profissional e certificado SSL por 12 meses. Se você já tem 
+              um domínio, configuramos tudo. Se não tem, podemos registrar um novo domínio por uma 
+              taxa adicional de R$ 40/ano (.com.br) ou R$ 60/ano (.com).
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__question-content">
+              <i class="fas fa-palette faq__icon"></i>
+              <h3 class="faq__title">Posso escolher as cores e o design da página?</h3>
+            </div>
+            <i class="fas fa-chevron-down faq__toggle"></i>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Absolutamente! Criamos um design 100% personalizado baseado na sua marca, cores, logo 
+              e preferências. Antes de começar, fazemos um briefing detalhado para entender sua visão 
+              e criar algo único que represente perfeitamente seu negócio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/img/teste.png" alt="Kartano" class="footer__logo">
+          <p class="footer__tagline">Transformando ideias em experiências digitais únicas</p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com/kartano.web/" class="footer__social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/35999902059" class="footer__social-link" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer__links">
+          <h4 class="footer__title">Navegação</h4>
+          <ul class="footer__list">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__contact">
+          <h4 class="footer__title">Contato</h4>
+          <ul class="footer__list">
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>(35) 99990-2059</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>contato@kartano.com.br</span>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Varginha, MG</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2025 Kartano. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <i class="fas fa-heart"></i> por Luiz Caetano</p>
       </div>
     </div>
   </footer>
 
+  <!-- Floating WhatsApp -->
+  <a href="#" class="floating-whatsapp" onclick="abrirWhatsApp('geral')" aria-label="Contato via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="floating-whatsapp__text">Fale comigo!</span>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="src/js/script.js"></script>
 </body>
 </html>
