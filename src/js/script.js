@@ -62,26 +62,26 @@ if (window.innerWidth < 768) {
 // ===================================
 // LOADING SCREEN
 // ===================================
-window.addEventListener('load', () => {
-  const loadingScreen = document.querySelector('.loading-screen');
+// window.addEventListener('load', () => {
+//   const loadingScreen = document.querySelector('.loading-screen');
   
-  gsap.to('.loading-progress', {
-    width: '100%',
-    duration: 2,
-    ease: 'power2.inOut'
-  });
+//   gsap.to('.loading-progress', {
+//     width: '100%',
+//     duration: 2,
+//     ease: 'power2.inOut'
+//   });
   
-  setTimeout(() => {
-    gsap.to(loadingScreen, {
-      opacity: 0,
-      duration: 0.5,
-      onComplete: () => {
-        loadingScreen.style.display = 'none';
-        initAnimations();
-      }
-    });
-  }, 2200);
-});
+//   setTimeout(() => {
+//     gsap.to(loadingScreen, {
+//       opacity: 0,
+//       duration: 0.5,
+//       onComplete: () => {
+//         loadingScreen.style.display = 'none';
+//         initAnimations();
+//       }
+//     });
+//   }, 2200);
+// });
 
 // ===================================
 // NAVIGATION
