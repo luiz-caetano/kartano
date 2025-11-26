@@ -134,7 +134,7 @@ body {
 }
 
 
-/* Loading Screen */
+/* Loading Screen
 .loading-screen {
   position: fixed;
   top: 0;
@@ -188,7 +188,7 @@ body {
 @keyframes loading {
   0% { width: 0; }
   100% { width: 100%; }
-}
+} */
 
 /* Container */
 .container {
